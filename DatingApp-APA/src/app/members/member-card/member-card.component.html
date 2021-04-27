@@ -1,0 +1,29 @@
+<div class="card mb-3">
+    <div class="image-wrapper">
+        <img class="card-img-top" [src]="user.photoUrl == null ? '../../assets/user.png' : user.photoUrl">
+        <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item">
+                <button [routerLink]="['/members',user.id]" type="button" class="btn btn-sm btn-primary">
+                    <i class="fa fa-user"></i>
+                </button>
+            </li>
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-sm btn-primary"
+                    (click)="likeUser(user.id)">
+                    <i class="fa fa-heart"></i>
+                </button>
+            </li>
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-sm btn-primary">
+                    <i class="fa fa-envelope"></i>
+                </button>
+            </li>
+        </ul>
+    </div> 
+    <div class="card-body">
+        <h6 class="card-title">
+            {{user.knownAs}}, {{user.age}}
+        </h6>
+        <p class="card-text">{{user.city}}</p>
+      </div>  
+</div>

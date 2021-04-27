@@ -1,0 +1,13 @@
+.btn{
+    border-radius: 0;
+}
+.card{
+    min-width: 150px;
+    min-height: 150px;
+}
+.card:hover{
+    border:2px dotted red
+}
+input[type="file"]{
+    color: transparent;
+}

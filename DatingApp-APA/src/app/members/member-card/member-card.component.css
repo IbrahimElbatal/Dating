@@ -1,0 +1,26 @@
+.card:hover img{
+    transform: scale(1.2);
+    transition: all 0.5s ease-in-out;
+}
+.card img{
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
+}
+.image-wrapper{
+    overflow: hidden;
+    position: relative;
+}
+.member-icons{
+    position: absolute;
+    bottom: -30%;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card:hover .member-icons{
+    bottom: 0%;
+    opacity: 1;
+    
+}

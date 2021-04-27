@@ -1,0 +1,14 @@
+
+<div *ngIf="!registerMode;else register">
+    <h2 class="text-center mt-3">Find your matches</h2>
+    <p class="text-center">come on to view your matches .... All you need to do is sign up</p>  
+    
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary mr-2" (click)="registerMode=true">Register</a>
+        <button type="button" class="btn btn-info">Learn More</button>
+    </div>    
+</div>
+
+<ng-template #register>
+    <app-register (cancel)="onCancelRegister($event)"></app-register>
+</ng-template>

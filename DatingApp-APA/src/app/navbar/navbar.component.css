@@ -1,0 +1,13 @@
+
+.dropdown-toggle:hover{
+    text-decoration: none;
+}
+ul.dropdown-menu.show {
+    margin-top: 13px;
+}
+.img-thumbnails{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    border: 1px solid white !important;
+}

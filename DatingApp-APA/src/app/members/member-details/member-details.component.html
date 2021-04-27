@@ -1,0 +1,92 @@
+<div class="row mt-5">
+    <div class="col-sm-4">
+        <div class="card">
+            <img [src]="user.photoUrl == null ? '../../../assets/user.png' : user.photoUrl" class="card-img-top img-thumbnail" alt="{{user.knownAs}}">
+            <div class="card-body">
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{user.country}} ,{{user.city}}</p>   
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>{{user.age}}</p>   
+                </div>
+                <div>
+                    <strong>Last Active:</strong>
+                    <p>{{user.lastActive | amTimeAgo}}</p>   
+                </div>
+                <div>
+                    <strong>Member Since:</strong>
+                    <p>{{user.created |date}}</p>   
+                </div>
+            </div> 
+            <div class="card-footer">
+                <div class="d-flex btn-group">
+                    <button class="btn btn-primary mr-1">Like</button>
+                    <button (click)="selectTab(3)" class="btn btn-success">Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="tabs-panel">
+            <tabset #staticTabSet>
+              <tab heading="About {{user.knownAs}}">
+                  <h5>Description</h5>
+                  <p>{{user.introduction}}</p>
+                  <br>
+                  <h5>Looking For</h5>
+                  <p>{{user.lookingFor}}</p>
+              </tab>
+              <tab heading="Interests">{{user.interests}}</tab>
+              <tab heading="Photos">
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+              </tab>
+              <tab heading="Messages">
+                <div style="height: 370px;overflow-y: scroll;">
+  
+                    <div *ngFor="let message of messages" class="mx-4">
+                        <div *ngIf="message.senderId == userId">
+                          <div class="pull-left d-flex align-items-center">
+                              <img src="{{message.senderPhotoUrl}}" class="img-thumbnail2">
+                              <div class="d-flex flex-column ml-2">
+                                  <h4>{{message.senderKnownAs}}</h4>
+                                  <p>{{message.content}}</p>
+                              </div>
+                          </div>
+                          <div class="pull-right">
+                              <p class="font-smaller text-muted">{{message.dateSent |amTimeAgo}}</p>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div *ngIf="message.senderId != userId">
+                            <hr>
+                              <div class="pull-right d-flex align-items-center">
+                                  <div class="d-flex flex-column ml-2">
+                                      <h4>{{message.senderKnownAs}}</h4>
+                                  </div>
+                                  <img src="{{message.senderPhotoUrl}}" class="img-thumbnail2">   
+                              </div>
+                              <div class="pull-left">
+                                  <p class="font-smaller text-muted mb-0">{{ message.dateSent | amTimeAgo}}
+                                      <span class="text-warning" *ngIf="!message.isRead">UnRead</span>
+                                  </p>
+                                  <p class="mb-0">{{message.content}}</p>
+      
+                              </div>
+                            </div>
+                        <div class="clearfix"></div>
+
+      
+                    </div>
+  
+                </div>
+                  <div class="input-group">
+                      <input class="form-control" type="text" #text>
+                      <button class="btn btn-secondary rounded-0" (click)="newMessage(text)">Send</button>
+                  </div>
+              </tab>
+            </tabset>
+          </div>
+    </div>
+</div>

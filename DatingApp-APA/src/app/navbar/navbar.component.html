@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Dating</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+          <ng-container *ngIf="isLoggedIn()">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/lists">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/members">Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
+          </li>
+        </ng-container>
+        </ul>
+        <ng-template #template>
+          <div class="btn-group" dropdown>
+            <span>
+              <img class="img-thumbnails" src="{{photoUrl == null ? '../assets/user.png' : photoUrl}}" alt="">
+            </span>
+            <a dropdownToggle type="button" class="dropdown-toggle text-light">
+              Welcome {{authService.userName}} <span class="caret"></span>
+            </a>
+            <ul *dropdownMenu class="dropdown-menu">
+              <li ><a class="dropdown-item" routerLink="/members/edit"><i class="fa fa-user mr-2"></i>Edit Profile</a></li>
+              <li ><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out mr-2"></i> Logout</a>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+        <form *ngIf="!isLoggedIn();else template" class="d-flex" #form="ngForm" (ngSubmit)="login()">
+          <input 
+            class="form-control mr-1" 
+            type="text" 
+            placeholder="UserName"
+            name="userName"
+            [(ngModel)]="model.userName"
+            required>
+          <input 
+            class="form-control mr-1" 
+            type="text" 
+            placeholder="Password"
+            name="password"
+            [(ngModel)]="model.password"
+            required>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </nav>
